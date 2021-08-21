@@ -1,0 +1,9 @@
+header {
+    min-height: 10rem;
+    margin-bottom: 5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color: khaki;
+}

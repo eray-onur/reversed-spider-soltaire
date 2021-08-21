@@ -1,0 +1,16 @@
+.game-card {
+    width: inherit;
+    position: absolute;
+    width: 100%;
+    cursor:grab;
+    transition: 0.2s box-shadow;
+    /* left: 50%;
+    transform: translateX(-50%); */
+}
+.game-card:hover {
+    box-shadow: 0 0 12px aqua;
+}
+.game-card-image {
+    width:100%;
+    height:100%;
+}

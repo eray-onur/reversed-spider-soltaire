@@ -1,0 +1,7 @@
+.deck {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
+    width: 80%;
+    min-height: 40rem;
+    margin: 0 auto;
+}
