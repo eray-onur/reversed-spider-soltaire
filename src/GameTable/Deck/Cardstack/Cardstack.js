@@ -7,7 +7,7 @@ const Cardstack = (props) => {
         
     // }));
     return (
-        <ul  className="card-stack">
+        <ul className={"card-stack"}>
             {props.children}
         </ul>
     );

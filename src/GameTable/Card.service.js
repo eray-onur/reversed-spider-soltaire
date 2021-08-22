@@ -79,7 +79,8 @@ export default class CardService {
         }
 
         // Randomly select any card from pile and add it to game deck.
-        const startLength = this.oneSuitCardPile.length;
+        const startLength = (this.oneSuitCardPile.length) / 2;
+        console.log(this.oneSuitCardPile.length);
         const findAvailableStack = this.findAvailableStack();
         for(var i = 0; i < startLength; i++) {
             const randCardIndex = Math.floor(Math.random() * this.oneSuitCardPile.length);

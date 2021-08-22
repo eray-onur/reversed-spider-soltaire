@@ -10,7 +10,7 @@ import { shuffleDeck } from './GameTable.reducer';
 import './GameTable.css';
 
 const GameTable = () => {
-    const {currentDeck} = useSelector(state => state.game);
+    const {currentDeck, spareStack} = useSelector(state => state.game);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -62,8 +62,21 @@ const GameTable = () => {
                         }
                     })()}
                 </Deck>
-                <Cardstack>
-
+                <Cardstack className="spare-stack">
+                    {spareStack.map((c, index) => {
+                        let cardHeight = (spareStack.indexOf(c)) * 40;
+                        return (
+                            <Card 
+                                key={c.id} 
+                                model={c} 
+                                stackIndex={index}
+                                style={{
+                                    'zIndex': '1',
+                                    'top': (spareStack.length === 0 ? '0' : cardHeight)
+                                }}
+                            />
+                        );
+                    })}
                 </Cardstack>
             </Page>
         </DndProvider>
