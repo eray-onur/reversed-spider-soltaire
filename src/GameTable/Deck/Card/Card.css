@@ -8,7 +8,7 @@
     transform: translateX(-50%); */
 }
 .game-card:hover {
-    box-shadow: 0 0 12px aqua;
+    box-shadow: 0 0 12px gold;
 }
 .game-card-image {
     width:100%;

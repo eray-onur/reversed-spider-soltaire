@@ -3,11 +3,11 @@ import { useDrop } from 'react-dnd'
 import './Cardstack.css';
 
 const Cardstack = (props) => {
-    const [collectedProps, drop] = useDrop(() => ({
+    // const [collectedProps, drop] = useDrop(() => ({
         
-    }));
+    // }));
     return (
-        <ul ref={drop} className="card-stack">
+        <ul  className="card-stack">
             {props.children}
         </ul>
     );

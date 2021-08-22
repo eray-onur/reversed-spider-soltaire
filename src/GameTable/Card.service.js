@@ -1,59 +1,92 @@
 import CardModel from './Deck/Card/Card.model';
-//import clubA from './../assets/img/cards/club-as.png';
-// import club2 from './../assets/img/cards/club-2.png';
-// import club3 from './../assets/img/cards/club-3.png';
-// import club4 from './../assets/img/cards/club-4.png';
-// import club5 from './../assets/img/cards/club-5.png';
-// import club6 from './../assets/img/cards/club-6.png';
-// import club7 from './../assets/img/cards/club-7.png';
-// import club8 from './../assets/img/cards/club-8.png';
-// import club9 from './../assets/img/cards/club-9.png';
-// import club10 from './../assets/img/cards/club-10.png';
-// import clubJ from './../assets/img/cards/club-J.png';
-// import clubK from './../assets/img/cards/club-K.png';
-// import clubQ from './../assets/img/cards/club-Q.png';
+import CardstackModel from './Deck/Cardstack/Cardstack.model';
 
+const STACK_COUNT = 10;
 
-export default class {
+export default class CardService {
     constructor() {
-
+        this.currentDeck = [];
+        this.oneSuitCardPile = [];
+        this.clubCards = [
+            { suit: 'club', rank: 'A', priority: 1, src: '/images/club-as.png'},
+            { suit: 'club', rank: '2', priority: 2, src: '/images/club-2.png' },
+            { suit: 'club', rank: '3', priority: 3, src: '/images/club-3.png' },
+            { suit: 'club', rank: '4', priority: 4, src: '/images/club-4.png' },
+            { suit: 'club', rank: '5', priority: 5, src: '/images/club-5.png' },
+            { suit: 'club', rank: '6', priority: 6, src: '/images/club-6.png' },
+            { suit: 'club', rank: '7', priority: 7, src: '/images/club-7.png' },
+            { suit: 'club', rank: '8', priority: 8, src: '/images/club-8.png' },
+            { suit: 'club', rank: '9', priority: 9, src: '/images/club-9.png' },
+            { suit: 'club', rank: '10', priority: 10, src: '/images/club-10.png' },
+            { suit: 'club', rank: 'J', priority: 11, src: '/images/club-J.png' },
+            { suit: 'club', rank: 'Q', priority: 12, src: '/images/club-Q.png' },
+            { suit: 'club', rank: 'K', priority: 13, src: '/images/club-K.png' },
+        ];
+        this.setAllOneSuitCards();
     }
 
-    getAllCards() {
-        return [
-            new CardModel('club', 'A', 1, '/images/club-as.png'),
-            new CardModel('club', '2', 2, '/images/club-2.png'),
-            new CardModel('club', '3', 3, '/images/club-3.png'),
-            new CardModel('club', '4', 4, '/images/club-4.png'),
-            new CardModel('club', '5', 5, '/images/club-5.png'),
-            new CardModel('club', '6', 6, '/images/club-6.png'),
-            new CardModel('club', '7', 7, '/images/club-7.png'),
-            new CardModel('club', '8', 8, '/images/club-8.png'),
-            new CardModel('club', '9', 9, '/images/club-9.png'),
-            new CardModel('club', '10', 10, '/images/club-10.png'),
-            new CardModel('club', 'J', 11, '/images/club-J.png'),
-            new CardModel('club', 'Q', 12, '/images/club-Q.png'),
-            new CardModel('club', 'K', 12, '/images/club-K.png'),
-        ]
+    // Set the entire one suit deck.
+    setAllOneSuitCards() {
+        for(let i = 0; i < 8; i++) {
+            this.clubCards.forEach((card) => this.oneSuitCardPile.push(card));
+        }
+        return this.oneSuitCardPile;
     }
 
-    getCardByValue(value) {
-        const card = this.getAllCards().filter(c => c.value === value)[0];
-        console.log(card);
-        return card;
+    takeCardFromPile(rank) {
+        const foundCard = this.oneSuitCardPile.find(c => c.rank === rank);
+
+        // If card is found in the pile, return it and remove from original position.
+        if(foundCard) {
+            const newInstance = new CardModel(foundCard.suit, foundCard.rank, foundCard.priority, foundCard.src);
+            this.oneSuitCardPile.splice(this.oneSuitCardPile.indexOf(foundCard), 1);
+
+            return newInstance;
+        }
+
+        return -1;
     }
 
-    getClubCardByValue(value) {
-        const card = this.getAllCards().filter(c => c.value === value && c.type === 'club')[0];
-        console.log(card);
-        return card;
-    }
+    // Generator function which iterates through card stacks.
 
-    getCardByType(type) {
-        return this.getAllCards().filter(c => c.type === type)[0];
+    * findAvailableStack() {
+        try {
+            let i = 0;
+            while(true) {
+                yield i++;
+                if(i >= STACK_COUNT)
+                    i = 0;
+            }
+        } catch(ex) {
+            console.error(ex);
+        }
+        
     }
+    // Sets up the entire deck and 10 card stacks.
+    shuffleCards() {
+        const currentDeck = [];
+        // Pushing the card stacks to deck.
+        for(let i = 0; i < 10; i++) {
+            currentDeck.push(new CardstackModel());
+        }
 
-    getCardByTypeAndValue(value, type) {
-        return this.getAllCards().filter(c => c.value === value && c.type === type)[0];
+        // Pushing the initial cards to stacks.
+        for(let i = 0; i < 4; i++) {
+            currentDeck[i].cards.push(this.takeCardFromPile('6'));
+        }
+        for(let i = 4; i < 10; i++) {
+            currentDeck[i].cards.push(this.takeCardFromPile('5'));
+        }
+
+        // Randomly select any card from pile and add it to game deck.
+        const startLength = this.oneSuitCardPile.length;
+        const findAvailableStack = this.findAvailableStack();
+        for(var i = 0; i < startLength; i++) {
+            const randCardIndex = Math.floor(Math.random() * this.oneSuitCardPile.length);
+            const card = this.takeCardFromPile(this.oneSuitCardPile[randCardIndex].rank);
+            currentDeck[findAvailableStack.next().value].cards.push(card);
+
+        }
+        return currentDeck;
     }
 }

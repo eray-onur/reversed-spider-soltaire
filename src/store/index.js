@@ -1,6 +1,6 @@
 import { combineReducers, createStore } from 'redux';
 import globalReducers from './global/index';
-import gameReducer from './game/index';
+import gameReducer from './../GameTable/GameTable.reducer';
 
 const reducers = combineReducers({
     global: globalReducers, 

@@ -1,27 +1,23 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import { useSelector, useDispatch } from "react-redux";
 import { DndProvider } from 'react-dnd';
 import {HTML5Backend} from 'react-dnd-html5-backend';
-import { GameContext } from './Game.context';
-import GameService from './Card.service';
 import Page from '../Common/Page';
 import Cardstack from './Deck/Cardstack/Cardstack';
 import Card from './Deck/Card/Card';
 import Deck from './Deck/Deck';
+import { shuffleDeck } from './GameTable.reducer';
 import './GameTable.css';
-import GameHeader from './GameHeader/GameHeader';
-import GameFooter from './GameFooter/GameFooter';
 
-const gameService = new GameService();
+const GameTable = () => {
+    const {currentDeck} = useSelector(state => state.game);
+    const dispatch = useDispatch();
 
-const DefaultDeckLayout = (props) => {
+    useEffect(() => {
+        dispatch(shuffleDeck());
+    }, []);
+
     return (
-        <p>A</p>
-    );
-}
-
-const GameTable = (props) => {
-    return (
-    <GameContext.Provider>
         <DndProvider backend={HTML5Backend}>
             <Page
                 pageVariants={{
@@ -39,43 +35,38 @@ const GameTable = (props) => {
                     transition: 'linear'
                 }}
             >
-                <GameHeader/>
                 <Deck>
-                    <Cardstack>
-                        <Card model={gameService.getCardByValue('6')} style={{'zIndex': '1', 'top': '0'}}/>
-                    </Cardstack>
-                    <Cardstack>
-                        <Card model={gameService.getCardByValue('6')} style={{'zIndex': '1', 'top': '0'}}/>
-                    </Cardstack>
-                    <Cardstack>
-                        <Card model={gameService.getCardByValue('6')} style={{'zIndex': '1', 'top': '0'}}/>
-                    </Cardstack>
-                    <Cardstack>
-                        <Card model={gameService.getCardByValue('6')} style={{'zIndex': '1', 'top': '0'}}/>
-                    </Cardstack>
-                    <Cardstack>
-                        <Card model={gameService.getCardByValue('5')} style={{'zIndex': '1', 'top': '0'}}/>
-                    </Cardstack>
-                    <Cardstack>
-                        <Card model={gameService.getCardByValue('5')} style={{'zIndex': '1', 'top': '0'}}/>
-                    </Cardstack>
-                    <Cardstack>
-                        <Card model={gameService.getCardByValue('5')} style={{'zIndex': '1', 'top': '0'}}/>
-                    </Cardstack>
-                    <Cardstack>
-                        <Card model={gameService.getCardByValue('5')} style={{'zIndex': '1', 'top': '0'}}/>
-                    </Cardstack>
-                    <Cardstack>
-                        <Card model={gameService.getCardByValue('5')} style={{'zIndex': '1', 'top': '0'}}/>
-                    </Cardstack>
-                    <Cardstack>
-                        <Card model={gameService.getCardByValue('5')} style={{'zIndex': '1', 'top': '0'}}/>
-                    </Cardstack>
+                    {(() => {
+                        if(currentDeck.length !== 0) {
+                            return currentDeck.map(stack => (
+                                <Cardstack key={(Math.random() * 10)}>
+                                    {stack.cards.map(c => {
+                                        let cardHeight = (stack.cards.indexOf(c)) * 40;
+                                        return (
+                                            <Card
+                                                key={c.rank + (Math.random() * 10)}
+                                                model={c}
+                                                stackIndex={currentDeck.indexOf(stack)}
+                                                style={{
+                                                    'zIndex': '1',
+                                                    'top': (stack.cards.length === 0 ? '0' : cardHeight)
+                                                }}
+                                                onClick={() => console.log(c.rank)}
+                                            />
+                                        )
+                                    })}
+                                </Cardstack>
+                            ));
+                        } else {
+                            return <p>No cards available in the deck. Please reload the game.</p>
+                        }
+                    })()}
                 </Deck>
-                <GameFooter/>
+                <Cardstack>
+
+                </Cardstack>
             </Page>
         </DndProvider>
-    </GameContext.Provider>
     );
 }
 

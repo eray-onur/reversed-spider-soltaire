@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {useDrag} from 'react-dnd';
+import { useDispatch, useSelector } from 'react-redux';
 import './Card.css';
 
-function getId() {
-    return String(Math.random() * 1000);
-}
+const Card = ({model, style, stackIndex}) => {
 
-const Card = ({model, style}) => {
+    const {selectCard} = useSelector(state => state.game);
+    const dispatch = useDispatch();
+
+
     const [{opacity, isDragging}, dragRef] = useDrag(
         () => ({
             type: 'card',
@@ -16,9 +18,9 @@ const Card = ({model, style}) => {
         })
     );
 
-    const id = getId();
     return (
         <li className="game-card"
+            onClick={() => selectCard({payload: {model, stackIndex}})}
             style={{...style, opacity: isDragging ? '0.25' : '1'}}>
             <img className="game-card-image" src={model.src} alt="card" />
         </li>
