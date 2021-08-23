@@ -1,0 +1,13 @@
+.btn {
+    background-color: #220;
+    outline: none !important;
+    color: beige;
+    border-color: gold;
+    padding: 1rem;
+    transition: .2s all;
+}
+.btn:hover {
+    background-color: gold;
+    color: #220;
+    border-color: #220;
+}

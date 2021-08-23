@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setUserName } from '../store/global/index';
-import Page from './../Common/Page';
+import Page from './../Common/Layouts/Page';
 import EntryForm from './EntryForm/EntryForm';
 import './Homepage.css';
 
@@ -9,7 +9,6 @@ const Homepage = (props) => {
     const {userName} = useSelector(state => state.global);
     const dispatch = useDispatch();
 
-    const a = useEffect(() => {console.log(userName)})
 
     return (
     <Page
@@ -29,8 +28,6 @@ const Homepage = (props) => {
         }}
     >
         <h1 className="home-heading">Spider Soltaire</h1>
-        <p>Login state: {userName}</p>
-        <button onClick={() => dispatch(setUserName('allah'))}>+</button>
         <EntryForm {...props}/>
     </Page>);
 }

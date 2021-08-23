@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { DndProvider } from 'react-dnd';
 import {HTML5Backend} from 'react-dnd-html5-backend';
-import Page from '../Common/Page';
+import Page from '../Common/Layouts/Page';
 import Cardstack from './Deck/Cardstack/Cardstack';
 import Card from './Deck/Card/Card';
 import Deck from './Deck/Deck';
