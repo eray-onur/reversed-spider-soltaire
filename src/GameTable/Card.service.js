@@ -65,6 +65,7 @@ export default class CardService {
     // Sets up the entire deck and 10 card stacks.
     shuffleCards() {
         const currentDeck = [];
+        const spareStack = [];
         // Pushing the card stacks to deck.
         for(let i = 0; i < 10; i++) {
             currentDeck.push(new CardstackModel());
@@ -88,9 +89,6 @@ export default class CardService {
             currentDeck[findAvailableStack.next().value].cards.push(card);
 
         }
-<<<<<<< Updated upstream
-        return currentDeck;
-=======
         this.oneSuitCardPile.forEach(c => 
             spareStack.push(
                 new CardModel(c.suit, c.rank, c.priority, c.src, false)
@@ -98,6 +96,5 @@ export default class CardService {
         );
         currentDeck.map(s => s.cards[s.cards.length - 1].active = true);
         return [currentDeck, spareStack];
->>>>>>> Stashed changes
     }
 }

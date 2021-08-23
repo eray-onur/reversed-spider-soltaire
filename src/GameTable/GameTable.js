@@ -8,10 +8,7 @@ import Card from './Deck/Card/Card';
 import Deck from './Deck/Deck';
 import { shuffleDeck } from './GameTable.reducer';
 import './GameTable.css';
-<<<<<<< Updated upstream
-=======
 import Sparestack from './Deck/Sparestack/Sparestack';
->>>>>>> Stashed changes
 
 const GameTable = () => {
     const {currentDeck} = useSelector(state => state.game);
@@ -21,11 +18,6 @@ const GameTable = () => {
         dispatch(shuffleDeck());
     }, []);
 
-<<<<<<< Updated upstream
-=======
-
-
->>>>>>> Stashed changes
     return (
         <DndProvider backend={HTML5Backend}>
             <Page
@@ -45,50 +37,6 @@ const GameTable = () => {
                 }}
             >
                 <Deck>
-<<<<<<< Updated upstream
-                    {(() => {
-                        if(currentDeck.length !== 0) {
-                            return currentDeck.map(stack => (
-                                <Cardstack key={(Math.random() * 10)}>
-                                    {stack.cards.map(c => {
-                                        let cardHeight = (stack.cards.indexOf(c)) * 40;
-                                        return (
-                                            <Card
-                                                key={c.rank + (Math.random() * 10)}
-                                                model={c}
-                                                stackIndex={currentDeck.indexOf(stack)}
-                                                style={{
-                                                    'zIndex': '1',
-                                                    'top': (stack.cards.length === 0 ? '0' : cardHeight)
-                                                }}
-                                                onClick={() => console.log(c.rank)}
-                                            />
-                                        )
-                                    })}
-                                </Cardstack>
-                            ));
-                        } else {
-                            return <p>No cards available in the deck. Please reload the game.</p>
-                        }
-                    })()}
-                </Deck>
-                <Cardstack className="spare-stack">
-                    {spareStack.map((c, index) => {
-                        let cardHeight = (spareStack.indexOf(c)) * 40;
-                        return (
-                            <Card 
-                                key={c.id} 
-                                model={c} 
-                                stackIndex={index}
-                                style={{
-                                    'zIndex': '1',
-                                    'top': (spareStack.length === 0 ? '0' : cardHeight)
-                                }}
-                            />
-                        );
-                    })}
-                </Cardstack>
-=======
                     {currentDeck.map(stack => (
                         <Cardstack key={stack.id}>
                             {stack.cards.map(c => {
@@ -109,7 +57,6 @@ const GameTable = () => {
                     ))}
                 </Deck>
                 <Sparestack></Sparestack>
->>>>>>> Stashed changes
             </Page>
         </DndProvider>
     );
