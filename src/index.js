@@ -9,6 +9,7 @@ import store from './store/index';
 
 
 
+
 // STORE -> GLOBALIZED STATE
 
 ReactDOM.render(

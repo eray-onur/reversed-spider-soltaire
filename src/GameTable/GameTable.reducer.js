@@ -4,6 +4,7 @@ import CardModel from './Deck/Card/Card.model';
 
 const initialState = {
     currentPoints: 0,
+<<<<<<< Updated upstream
     currentlySelectedCard: null,
     currentDeck: [
 
@@ -11,6 +12,14 @@ const initialState = {
     spareStack: [
 
     ]
+=======
+    currentlySelected: {
+        stackIndex: null,
+        cards: []
+    },
+    currentDeck: [],
+    spareStack: []
+>>>>>>> Stashed changes
 }
 
 const cardService = new CardService();
@@ -34,15 +43,32 @@ const gameSlice = createSlice({
         resetDeck(state) {
             state = initialState;
         },
+<<<<<<< Updated upstream
+=======
+        addFromSpareStack(state) {
+            //Add cards from spare to the deck.
+            [...Array(10)].forEach((_, i) => {
+                if(state.spareStack.length > 0) {
+                    const cardToAdd = state.spareStack.pop();
+                    cardToAdd.active = true;
+                    state.currentDeck[i].cards.push(cardToAdd);
+                }
+            })
+            return state;
+        },
+>>>>>>> Stashed changes
         // Selecting a card for moving.
         selectCard(state, action) {
 
+<<<<<<< Updated upstream
             // If the selected element is not the last item, action will not be executed!
             if(state.currentDeck[action.payload.stackIndex].cards
                 .find(c => c.id === action.payload.model.id) > -1) {
                 return;
             }
 
+=======
+>>>>>>> Stashed changes
             // If selected card is unavailable, current selection will be tracked.
             if(state.currentlySelectedCard === null) {
                 state.currentlySelectedCard = action.payload;
@@ -69,7 +95,15 @@ const gameSlice = createSlice({
 
                     }
                 }
+<<<<<<< Updated upstream
                 state.currentlySelectedCard = null;
+=======
+                // State mutation
+                deck.forEach(s => s.cards[s.cards.length - 1].active = true);
+                state.currentDeck = deck;
+                state.currentlySelected = initialState.currentlySelected;
+                return state;
+>>>>>>> Stashed changes
             }
         },
     }

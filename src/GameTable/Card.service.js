@@ -88,6 +88,16 @@ export default class CardService {
             currentDeck[findAvailableStack.next().value].cards.push(card);
 
         }
+<<<<<<< Updated upstream
         return currentDeck;
+=======
+        this.oneSuitCardPile.forEach(c => 
+            spareStack.push(
+                new CardModel(c.suit, c.rank, c.priority, c.src, false)
+            )
+        );
+        currentDeck.map(s => s.cards[s.cards.length - 1].active = true);
+        return [currentDeck, spareStack];
+>>>>>>> Stashed changes
     }
 }

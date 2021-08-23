@@ -8,15 +8,24 @@ import Card from './Deck/Card/Card';
 import Deck from './Deck/Deck';
 import { shuffleDeck } from './GameTable.reducer';
 import './GameTable.css';
+<<<<<<< Updated upstream
+=======
+import Sparestack from './Deck/Sparestack/Sparestack';
+>>>>>>> Stashed changes
 
 const GameTable = () => {
-    const {currentDeck, spareStack} = useSelector(state => state.game);
+    const {currentDeck} = useSelector(state => state.game);
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(shuffleDeck());
     }, []);
 
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
     return (
         <DndProvider backend={HTML5Backend}>
             <Page
@@ -36,6 +45,7 @@ const GameTable = () => {
                 }}
             >
                 <Deck>
+<<<<<<< Updated upstream
                     {(() => {
                         if(currentDeck.length !== 0) {
                             return currentDeck.map(stack => (
@@ -78,6 +88,28 @@ const GameTable = () => {
                         );
                     })}
                 </Cardstack>
+=======
+                    {currentDeck.map(stack => (
+                        <Cardstack key={stack.id}>
+                            {stack.cards.map(c => {
+                                let cardHeight = (stack.cards.indexOf(c)) * 40;
+                                return (
+                                    <Card
+                                        key={c.id}
+                                        model={c}
+                                        stackIndex={currentDeck.indexOf(stack)}
+                                        style={{
+                                            'zIndex': '1',
+                                            'top': (stack.cards.length === 0 ? '0' : cardHeight)
+                                        }}
+                                    />
+                                )
+                            })}
+                        </Cardstack>
+                    ))}
+                </Deck>
+                <Sparestack></Sparestack>
+>>>>>>> Stashed changes
             </Page>
         </DndProvider>
     );
