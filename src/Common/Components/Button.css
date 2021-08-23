@@ -1,13 +1,13 @@
 .btn {
     background-color: #220;
     outline: none !important;
-    color: beige;
-    border-color: gold;
+    color: var(--text-1-color);
+    border-color: var(--secondary-color);
     padding: 1rem;
     transition: .2s all;
 }
 .btn:hover {
-    background-color: gold;
+    background-color: var(--secondary-color);
     color: #220;
     border-color: #220;
 }

@@ -2,10 +2,14 @@
   --primary-color: #110;
   --secondary-color: gold;
   --highlight-color: orange;
-  --text-color: beige;
+  --text-1-color: beige;
+  --text-2-color: #110;
   --active-color: greenyellow;
   --inactive-color: gainsboro;
+  --light-color: white;
   --shadow-color: #444;
+  --card-color: #414141;
+  --page-color: #333;
 }
 
 html, body {
@@ -53,6 +57,14 @@ h4 {
 
 p, a {
   font-size: 1.8rem;
+}
+
+.text-1 {
+  color: var(--text-1-color);
+}
+
+.text-2 {
+  color: var(--text-2-color);
 }
 
 /*---------- SCROLLBAR STYLING ----------*/

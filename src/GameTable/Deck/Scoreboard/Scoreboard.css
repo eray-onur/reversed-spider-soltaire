@@ -1,0 +1,16 @@
+.scoreboard {
+    background-color: var(--card-color);
+    color: var(--text-1-color);
+    position: absolute;
+    bottom: 5%;
+    right: 2.5%;
+    padding: 2rem;
+}
+
+.scoreboard-points {
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+
+.high-points {
+    color: var(--secondary-color);
+}

@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setUserName } from '../store/global/index';
 import Page from './../Common/Layouts/Page';
 import EntryForm from './EntryForm/EntryForm';
 import './Homepage.css';
 
 const Homepage = (props) => {
-    const {userName} = useSelector(state => state.global);
+    const {userName} = useSelector(state => state.game);
     const dispatch = useDispatch();
 
 
@@ -26,6 +25,7 @@ const Homepage = (props) => {
             duration: 0.35,
             transition: 'linear'
         }}
+        classes={'home-page'}
     >
         <h1 className="home-heading">Spider Soltaire</h1>
         <EntryForm {...props}/>

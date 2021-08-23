@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {useDrag} from 'react-dnd';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { selectCard } from '../../GameTable.reducer';
 import './Card.css';
 
@@ -10,7 +10,7 @@ const Card = ({model, style, stackIndex}) => {
     const dispatch = useDispatch();
 
 
-    const [{opacity, isDragging}, dragRef] = useDrag(
+    const [{isDragging}] = useDrag(
         () => ({
             type: 'card',
             collect: monitor => ({

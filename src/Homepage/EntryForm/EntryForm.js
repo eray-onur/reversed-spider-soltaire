@@ -6,16 +6,16 @@ const EntryForm = (props) => {
     const [nickname, setNickname] = useState({value: ''});
 
     useEffect(() => {
-        const previousNickname = localStorage.getItem("nickname");
+        const previousNickname = localStorage.getItem("nickname").toString();
         if(previousNickname) {
             setNickname({value: previousNickname});
-            console.log(nickname);
+            console.log(nickname.value);
         }
     }, []);
 
     const handleSubmit = (e) => {
         if(nickname.value.length > 6) {
-            localStorage.setItem("nickname", nickname)
+            localStorage.setItem("nickname", nickname.value)
             props.history.push(`/deck`);
         } else {
             alert("Please enter a valid nickname.");
@@ -25,9 +25,9 @@ const EntryForm = (props) => {
 
     return (
         <div className="entry-form-card">
-            <p>Type your nickname: </p>
+            <p className="text-1">Type your nickname: </p>
             <form className="entry-form">
-                <input type="text" placeholder="i.e: Eraybaba97" value={nickname.value}
+                <input className="text-input" type="text" placeholder="i.e: Eraybaba97" value={nickname.value}
                     onChange={(e) => setNickname({value: e.target.value})}/>
                 <Button type="button" onClick={handleSubmit}>Start Game</Button>
             </form>

@@ -3,7 +3,8 @@ import CardService from './Card.service';
 import CardModel from './Deck/Card/Card.model';
 
 const initialState = {
-    currentPoints: 0,
+    userName: '',
+    currentScore: 0,
     currentlySelected: {
         stackIndex: null,
         cards: []
@@ -48,8 +49,7 @@ const gameSlice = createSlice({
             const currentlySelected = state.currentlySelected; // Latest selection
             const newCard = action.payload.model; // Current selection
             const stackIndex = action.payload.stackIndex; // Current selection's belonging stack.
-
-            console.log(stackIndex);
+            const currentScore = state.currentScore; // Player score.
 
             // If selected card is unavailable, current selection will be tracked.
             if(currentlySelected.cards.length === 0) {
@@ -84,7 +84,10 @@ const gameSlice = createSlice({
                 // Validating whether if selected card's priority is higher.
                 // If it is, then start replacing the previously selected cards into new stack.
                 if(firstCard.priority - newCard.priority === 1) {
-                    currentlySelected.cards.forEach(c => deck[stackIndex].cards.push(c));
+                    currentlySelected.cards.forEach(c => {
+                        deck[stackIndex].cards.push(c);
+                        state.currentScore += 20;
+                    });
                     const cardIndexToDelete = deck[currentlySelected.stackIndex].cards.findIndex(c => currentlySelected.cards[0].id === c.id);
                     deck[currentlySelected.stackIndex].cards.splice(cardIndexToDelete, deck[currentlySelected.stackIndex].cards.length);
                 }

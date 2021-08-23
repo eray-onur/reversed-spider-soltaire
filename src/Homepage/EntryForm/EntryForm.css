@@ -1,6 +1,6 @@
 .entry-form-card {
     box-shadow: 1px 0 8px #ddd;
-    background-color: azure;
+    background-color: var(--card-color);
     width: 40rem;
     display: flex;
     flex-direction: column;
@@ -21,4 +21,24 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+}
+
+.text-input {
+    outline: none !important;
+    border: 2px solid var(--light-color);
+    min-height: 3rem;
+    padding-left: .25rem;
+    width: 15rem; 
+    -webkit-transition: all .2s ease-out;
+    -moz-transition: all .2s ease-out;
+    -ms-transition: all .2s ease-out;
+    -o-transition: all .2s ease-out;
+    transition: all .2s ease-out;
+}
+
+.text-input:focus {
+    border: 2px solid var(--secondary-color);
+    background-color: var(--primary-color);
+    color: var(--text-1-color);
+    width: 20rem;
 }

@@ -9,6 +9,7 @@ import Deck from './Deck/Deck';
 import { shuffleDeck } from './GameTable.reducer';
 import './GameTable.css';
 import Sparestack from './Deck/Sparestack/Sparestack';
+import Scoreboard from './Deck/Scoreboard/Scoreboard';
 
 const GameTable = () => {
     const {currentDeck} = useSelector(state => state.game);
@@ -35,6 +36,7 @@ const GameTable = () => {
                     duration: 0.35,
                     transition: 'linear'
                 }}
+                classes={'gametable-page'}
             >
                 <Deck>
                     {currentDeck.map(stack => (
@@ -57,6 +59,7 @@ const GameTable = () => {
                     ))}
                 </Deck>
                 <Sparestack></Sparestack>
+                <Scoreboard></Scoreboard>
             </Page>
         </DndProvider>
     );

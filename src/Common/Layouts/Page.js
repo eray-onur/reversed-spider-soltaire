@@ -1,17 +1,17 @@
 import React from 'react';
 import './Page.css';
 import { motion } from 'framer-motion';
-const Page = (props) => {
+const Page = ({pageVariants, pageTransition, classes, children}) => {
     return (
         <motion.div
-            className='page-body'
-            variants={props.pageVariants}
-            transition={props.pageTransition}
+            className={classes + ' page-body'}
+            variants={pageVariants}
+            transition={pageTransition}
             initial="out"
             animate="in"
             exit="out"
         >
-            {props.children}
+            {children}
         </motion.div>
     );
 }
