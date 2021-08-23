@@ -1,6 +1,5 @@
 import { createSlice, current } from '@reduxjs/toolkit';
 import CardService from './Card.service';
-import CardModel from './Deck/Card/Card.model';
 
 const initialState = {
     userName: '',
@@ -24,7 +23,7 @@ const gameSlice = createSlice({
             state.userName = action.payload;
         },
         // Shuffle the entire deck of cards.
-        shuffleDeck(state, action) {
+        shuffleDeck(state) {
             [state.currentDeck, state.spareStack] = cardService.shuffleCards();
             return state;
         },

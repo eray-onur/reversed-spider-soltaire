@@ -11,7 +11,7 @@ const EntryForm = (props) => {
             setNickname({value: previousNickname});
             console.log(nickname.value);
         }
-    }, []);
+    }, [nickname.value]);
 
     const handleSubmit = (e) => {
         if(nickname.value.length > 6) {

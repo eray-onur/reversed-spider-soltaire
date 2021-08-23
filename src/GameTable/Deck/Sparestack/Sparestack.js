@@ -1,5 +1,4 @@
 import React from 'react';
-import Card from './../Card/Card';
 import './Sparestack.css';
 
 import {addFromSpareStack} from '../../GameTable.reducer';

@@ -1,13 +1,9 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
 import Page from './../Common/Layouts/Page';
 import EntryForm from './EntryForm/EntryForm';
 import './Homepage.css';
 
 const Homepage = (props) => {
-    const {userName} = useSelector(state => state.game);
-    const dispatch = useDispatch();
-
 
     return (
     <Page
