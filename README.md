@@ -1,5 +1,7 @@
 # Spider Soltaire
 
+> Live Game: https://reversed-spider-soltaire.herokuapp.com/
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Objective
@@ -9,5 +11,5 @@ However, in this game, the ranks are reversed in value and the player must seque
 
 ## Valuable Info
 
-> Only One Suit Soltaire is implemented at its current state.
-> Drag and Drop feature is not implemented at its current state. Player must only select the cards to progress the game.
+* Only One Suit Soltaire is implemented at its current state.
+*  Drag and Drop feature is not implemented at its current state. Player must only select the cards to progress the game.
