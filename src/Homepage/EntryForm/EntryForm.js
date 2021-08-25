@@ -6,7 +6,7 @@ const EntryForm = (props) => {
     const [nickname, setNickname] = useState({value: ''});
 
     useEffect(() => {
-        const previousNickname = localStorage.getItem("nickname").toString();
+        const previousNickname = localStorage.getItem("nickname");
         if(previousNickname) {
             setNickname({value: previousNickname});
             console.log(nickname.value);
