@@ -13,7 +13,7 @@ const EntryForm = (props) => {
         }
     }, [nickname.value]);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = () => {
         if(nickname.value.length > 6) {
             localStorage.setItem("nickname", nickname.value)
             props.history.push(`/deck`);

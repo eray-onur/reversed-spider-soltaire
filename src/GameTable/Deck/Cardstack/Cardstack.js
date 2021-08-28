@@ -1,6 +1,6 @@
 import React from 'react';
-import { useDrop } from 'react-dnd'
 import './Cardstack.css';
+// import { useDrop } from 'react-dnd'
 
 const Cardstack = (props) => {
     // const [collectedProps, drop] = useDrop(() => ({

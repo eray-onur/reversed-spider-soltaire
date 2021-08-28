@@ -9,7 +9,7 @@ const Sparestack = () => {
     const dispatch = useDispatch();
     return (
         <div className="spare-stack" style={{visibility: spareStack.length > 0 ? 'visible' : 'hidden'}}  onClick={() => dispatch(addFromSpareStack())}>
-            <img src={'/images/card-bg.png'} />
+            <img src={'/images/card-bg.webp'} />
         </div>
     );
 }

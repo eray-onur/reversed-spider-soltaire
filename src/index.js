@@ -7,11 +7,6 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store/index';
 
-
-
-
-// STORE -> GLOBALIZED STATE
-
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>

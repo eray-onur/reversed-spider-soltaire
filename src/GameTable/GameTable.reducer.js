@@ -1,4 +1,4 @@
-import { createSlice, current } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import CardService from './Card.service';
 
 const initialState = {
@@ -18,18 +18,14 @@ const gameSlice = createSlice({
     name: 'game',
     initialState,
     reducers: {
-        // Increases player score.
-        determineScore(state, action) {
-            state.userName = action.payload;
-        },
         // Shuffle the entire deck of cards.
         shuffleDeck(state) {
             [state.currentDeck, state.spareStack] = cardService.shuffleCards();
             return state;
         },
-        resetDeck(state) {
-            state = initialState;
-        },
+        // resetDeck(state) {
+        //     state = initialState;
+        // },
         addFromSpareStack(state) {
             [...Array(10)].forEach((_, i) => {
                 if(state.spareStack.length > 0) {
@@ -43,12 +39,10 @@ const gameSlice = createSlice({
         },
         // Selecting a card for moving.
         selectCard(state, action) {
-            const newState = state;
             const deck = state.currentDeck;
             const currentlySelected = state.currentlySelected; // Latest selection
             const newCard = action.payload.model; // Current selection
             const stackIndex = action.payload.stackIndex; // Current selection's belonging stack.
-            const currentScore = state.currentScore; // Player score.
 
             // If selected card is unavailable, current selection will be tracked.
             if(currentlySelected.cards.length === 0) {
