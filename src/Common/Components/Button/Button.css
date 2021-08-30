@@ -1,13 +1,19 @@
 .btn {
-    background-color: #220;
+    cursor: pointer;
+    background-color: #222;
     outline: none !important;
     color: var(--text-1-color);
     border-color: var(--secondary-color);
+    border-radius: .25rem;
     padding: 1rem;
     transition: .2s all;
 }
 .btn:hover {
     background-color: var(--secondary-color);
-    color: #220;
-    border-color: #220;
+    color: #222;
+    border-color: #222;
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
 }

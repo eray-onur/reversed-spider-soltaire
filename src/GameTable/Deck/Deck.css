@@ -1,8 +1,16 @@
 .deck {
     display: grid;
     grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
-    width: 80%;
+    width: 100%;
     min-height: 60rem;
     height: fit-content;
     margin: 0 auto;
+}
+
+@media (min-width: 1025px) {
+    
+    .deck {
+        width: 80%;
+    }
+
 }

@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import { AnimatePresence } from 'framer-motion';
 import { Route, Switch, useLocation } from 'react-router-dom';
 import Homepage from './Homepage/Homepage';
@@ -13,7 +12,7 @@ function App() {
           location={location}
           key={location.pathname}
         >
-          <Route path="/deck" component={GameTable}/>
+          <Route path="/game" component={GameTable}/>
           <Route path='' exact component={Homepage} />
         </Switch>
     </AnimatePresence>

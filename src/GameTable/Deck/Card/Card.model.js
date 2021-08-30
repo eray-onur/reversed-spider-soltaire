@@ -6,7 +6,4 @@ export default class CardModel {
         this.priority = priority;
         this.src = src;
     }
-    getSuit() {
-        return this.suit;
-    }
 }

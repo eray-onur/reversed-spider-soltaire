@@ -12,6 +12,7 @@
     "react-dnd": "^14.0.2",
     "react-dnd-html5-backend": "^14.0.0",
     "react-dom": "^17.0.2",
+    "react-modal": "^3.14.3",
     "react-redux": "^7.2.4",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
@@ -23,7 +24,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test:e2e": "cypress open-ct",
+    "test:coverage": "npm test --watchAll --coverage",
+    "cypress:start:app": "cross-env BROWSER=none react-scripts -r @cypress/instrument-cra start",
+    "cypress:start:wait": "start-server-and-test cypress:start:app http://localhost:3000",
+    "e2e:open": "npm run cypress:start:wait -- \"cypress open\"",
+    "e2e:run": "npm run cypress:start:wait -- \"cypress run\"",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -45,10 +50,14 @@
     ]
   },
   "devDependencies": {
+    "@cypress/code-coverage": "^3.9.10",
+    "@cypress/instrument-cra": "^1.4.0",
     "@cypress/react": "^5.9.3",
     "@cypress/webpack-dev-server": "^1.4.0",
+    "cross-env": "^7.0.3",
     "cypress": "^8.2.0",
     "eslint": "^7.32.0",
-    "eslint-plugin-react": "^7.24.0"
+    "eslint-plugin-react": "^7.24.0",
+    "start-server-and-test": "^1.13.1"
   }
 }

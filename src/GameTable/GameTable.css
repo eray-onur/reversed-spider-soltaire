@@ -1,3 +1,4 @@
 .gametable-page {
-    background-color: var(--page-color);
+    background-image: url('./table.webp');
+    background-size: cover;
 }

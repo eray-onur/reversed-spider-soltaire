@@ -1,26 +1,29 @@
+.entry-form-layout {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
 .entry-form-card {
     box-shadow: 1px 0 8px #ddd;
     background-color: var(--card-color);
     width: 40rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: center;
-    gap: 5rem;
-    padding: 2rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 1rem;
 }
 
-.entry-form {
-    width: 100%;
+.entry-form-row {
+    width: inherit;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
     align-items: center;
+    justify-content: space-around;
 }
 
 .text-input {

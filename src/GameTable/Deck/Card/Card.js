@@ -1,14 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {useDrag} from 'react-dnd';
-import { useDispatch } from 'react-redux';
-import { selectCard } from '../../GameTable.reducer';
+// import { useSelector } from 'react-redux';
 import './Card.css';
 
-const Card = ({model, style, stackIndex}) => {
-
-    // const {selectCard} = useSelector(state => state.game);
-    const dispatch = useDispatch();
-
+const Card = ({model, style, onSelect}) => {
+    const [isSelected] = useState(false);
+    // const {currentlySelected} = useSelector(state => state.game);
 
     const [{isDragging}] = useDrag(
         () => ({
@@ -21,8 +18,8 @@ const Card = ({model, style, stackIndex}) => {
 
     return (
         <li className="game-card"
-            onClick={() => dispatch(selectCard({model, stackIndex}))}
-            style={{...style, opacity: isDragging ? '0.25' : '1'}}>
+            onClick={() => onSelect()}
+            style={{...style, opacity: isDragging ? '0' : '1', border: isSelected ? '4px solid lightgreen' : 'none'}}>
             <img className="game-card-image" src={model.src} alt="card" />
         </li>
     );

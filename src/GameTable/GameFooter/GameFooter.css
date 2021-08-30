@@ -1,0 +1,11 @@
+footer {
+    background-color: rgba(0,0,0,0.6);
+
+    width: 100%;
+    height: 8vh;
+    color: var(--light-color);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}

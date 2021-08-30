@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import CardService from './Card.service';
 
-const initialState = {
+let initialState = {
     userName: '',
     currentScore: 0,
     currentlySelected: {
@@ -18,14 +18,16 @@ const gameSlice = createSlice({
     name: 'game',
     initialState,
     reducers: {
+        determineScore(state, action) {
+            state.currentScore += 25 * action.payload.cardRow;
+            return state;
+        },
         // Shuffle the entire deck of cards.
         shuffleDeck(state) {
+            state = {...initialState};
             [state.currentDeck, state.spareStack] = cardService.shuffleCards();
             return state;
         },
-        // resetDeck(state) {
-        //     state = initialState;
-        // },
         addFromSpareStack(state) {
             [...Array(10)].forEach((_, i) => {
                 if(state.spareStack.length > 0) {

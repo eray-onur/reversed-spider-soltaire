@@ -3,13 +3,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { DndProvider } from 'react-dnd';
 import {HTML5Backend} from 'react-dnd-html5-backend';
 import Page from '../Common/Layouts/Page';
+import GameFooter from './GameFooter/GameFooter';
 import Cardstack from './Deck/Cardstack/Cardstack';
 import Card from './Deck/Card/Card';
 import Deck from './Deck/Deck';
-import { shuffleDeck } from './GameTable.reducer';
+import { shuffleDeck, selectCard } from './GameTable.reducer';
 import './GameTable.css';
-import Sparestack from './Deck/Sparestack/Sparestack';
-import Scoreboard from './Deck/Scoreboard/Scoreboard';
+import Sparestack from './Sparestack/Sparestack';
 
 const GameTable = () => {
     const {currentDeck} = useSelector(state => state.game);
@@ -39,15 +39,16 @@ const GameTable = () => {
                 classes={'gametable-page'}
             >
                 <Deck>
-                    {currentDeck.map(stack => (
-                        <Cardstack key={stack.id}>
-                            {stack.cards.map(c => {
-                                let cardHeight = (stack.cards.indexOf(c)) * 40;
+                    {currentDeck.map((stack, i) => (
+                        <Cardstack key={stack.id} stackIndex={i}>
+                            {stack.cards.map((c) => {
+                                let cardHeight = (stack.cards.indexOf(c)) * stack.stackGap;
                                 return (
                                     <Card
                                         key={c.id}
                                         model={c}
                                         stackIndex={currentDeck.indexOf(stack)}
+                                        onSelect={() => dispatch(selectCard({model: c, stackIndex: i}))}
                                         style={{
                                             'zIndex': '1',
                                             'top': (stack.cards.length === 0 ? '0' : cardHeight)
@@ -59,7 +60,7 @@ const GameTable = () => {
                     ))}
                 </Deck>
                 <Sparestack></Sparestack>
-                <Scoreboard></Scoreboard>
+                <GameFooter/>
             </Page>
         </DndProvider>
     );

@@ -1,0 +1,23 @@
+.scoreboard {
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.scoreboard-points {
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    border: 1px solid black;
+    background-color: var(--card-color);
+    color: var(--text-1-color);
+    height: 100%;
+    width: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.high-points {
+    color: var(--secondary-color);
+}

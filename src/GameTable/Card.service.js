@@ -22,7 +22,6 @@ export default class CardService {
             { suit: 'club', rank: 'Q', priority: 12, src: '/images/club-Q.webp' },
             { suit: 'club', rank: 'K', priority: 13, src: '/images/club-K.webp' },
         ];
-        this.setAllOneSuitCards();
     }
 
     // Set the entire one suit deck.
@@ -64,8 +63,9 @@ export default class CardService {
     }
     // Sets up the entire deck and 10 card stacks.
     shuffleCards() {
-        const currentDeck = [];
-        const spareStack = [];
+        this.setAllOneSuitCards();
+        let currentDeck = [];
+        let spareStack = [];
         // Pushing the card stacks to deck.
         for(let i = 0; i < 10; i++) {
             currentDeck.push(new CardstackModel());

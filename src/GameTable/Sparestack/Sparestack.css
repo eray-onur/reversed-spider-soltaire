@@ -1,0 +1,26 @@
+.spare-stack {
+    list-style-type: none;
+    width:fit-content;
+    display: flex;
+    position: relative;
+    background-color: rgba(0,0,0,0.6);
+    padding: .1rem;
+}
+.spare-stack > img {
+    width: 9vw;
+}
+.spare-stack > img:hover {
+    box-shadow: 1px 0 12px var(--secondary-color);
+    object-fit: contain;
+}
+
+.spare-stack-warning {
+    cursor:not-allowed;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+    color: var(--light-color);
+}

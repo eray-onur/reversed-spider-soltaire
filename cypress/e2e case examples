@@ -1,0 +1,10 @@
+1) user enters legit nickname
+2) user enters invalid nickname
+3) user selects a card to go correct place
+4) user selects a card and fails to move it
+5) scoreboard works correctly
+6) user enters tutorial
+7) user forfeits the game
+* 8) user wins
+* 9) user loses
+* 10) use hint
