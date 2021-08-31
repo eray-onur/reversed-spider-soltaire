@@ -1,0 +1,21 @@
+header {
+    background-color: rgba(0,0,0,0.6);
+    width: 100%;
+    color: var(--light-color);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.session-information {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+}
+
+.btn-forfeit {
+    justify-self: flex-start !important;   
+}
+

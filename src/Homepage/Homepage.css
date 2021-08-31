@@ -25,4 +25,7 @@
 .btn-tutorial {
     width: 30%;
     margin: 0 auto;
+    font-weight: 100;
+    font-style: italic;
+    font-size: 11pt;
 }

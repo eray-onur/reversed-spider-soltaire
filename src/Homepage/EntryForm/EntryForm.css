@@ -45,3 +45,10 @@
     color: var(--text-1-color);
     width: 20rem;
 }
+
+.btn-start {
+    width: 20rem;
+    font-size: 11pt;
+    font-weight: 100;
+    font-style: italic;
+}

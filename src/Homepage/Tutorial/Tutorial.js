@@ -1,14 +1,13 @@
 import React from 'react';
 
-const Tutorial = ({}) => {
+const Tutorial = () => {
     return (
         <div>
-            <h1>How to play Reversed Spider Soltaire?</h1>
+            <h1>Spider Soltaire Tutorial</h1>
             <div>
                 {/* Should explain what game this is */}
             </div>
             <div>
-                
                 {/* Gameplay presentation through images. */}
             </div>
         </div>

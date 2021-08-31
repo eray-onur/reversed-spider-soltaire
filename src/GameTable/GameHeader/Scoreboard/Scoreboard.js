@@ -7,7 +7,7 @@ const Scoreboard = () => {
 
     return (
         <div className="scoreboard">
-            <p>Score</p>
+            <p>Score:</p>
             <h2 className={'scoreboard-points ' + (currentScore >= 500 ?? 'high-points')}>{currentScore.toString()}</h2>
         </div>
     );

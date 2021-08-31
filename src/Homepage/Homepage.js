@@ -3,6 +3,7 @@ import Page from './../Common/Layouts/Page';
 import EntryForm from './EntryForm/EntryForm';
 import Button from './../Common/Components/Button/Button';
 import Modal from 'react-modal';
+import Tutorial from './Tutorial/Tutorial';
 import './Homepage.css';
 
 if (process.env.NODE_ENV !== 'test')
@@ -56,10 +57,9 @@ const Homepage = (props) => {
             isOpen={tutorialModalIsOpen}
             onRequestClose={closeModal}
             style={customModalStyle}
-            contentLabel="Example Modal"
+            contentLabel="Tutorial"
         >
-            <h2>Hello</h2>
-            <div>I am a modal</div>
+            <Tutorial/>
         </Modal>
     </Page>);
 }

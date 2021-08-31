@@ -1,0 +1,25 @@
+.hint {
+    cursor: pointer;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 100%;
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    border-width: 4px;
+    border-color: transparent;
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s all;
+}
+
+.hint:hover {
+    border-color: var(--secondary-color);
+}
+
+.hint > p {
+    font-size: 2.6rem;
+}

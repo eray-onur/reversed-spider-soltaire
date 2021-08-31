@@ -2,13 +2,126 @@ import { createSlice } from '@reduxjs/toolkit';
 import CardService from './Card.service';
 
 let initialState = {
-    userName: '',
+    nickName: 'Default Player',
+    hasWon: null,
     currentScore: 0,
     currentlySelected: {
         stackIndex: null,
         cards: []
     },
     currentDeck: [],
+    spareStack: [],
+    hint: {
+        left: 3,
+        cards: []
+    },
+}
+
+// DUMMY - MUST BE REMOVED AFTER WIN STATE IS PLAY-PROOF!
+let aboutToWinState = {
+    nickName: 'Default Player',
+    hasWon: null,
+    currentScore: 0,
+    hint: {
+        left: 3,
+        cards: []
+    },
+    currentlySelected: {
+        stackIndex: null,
+        cards: []
+    },
+    currentDeck: [
+        {
+            id: 1,
+            stackGap: 40,
+            stackIndex: 0,
+            cards: [
+                { id: 1, suit: 'club', rank: 'A', priority: 1, src: '/images/club-as.webp'},
+                { id: 2, suit: 'club', rank: '2', priority: 2, src: '/images/club-2.webp' },
+                { id: 3, suit: 'club', rank: '3', priority: 3, src: '/images/club-3.webp' },
+                { id: 4, suit: 'club', rank: '4', priority: 4, src: '/images/club-4.webp' },
+                { id: 5, suit: 'club', rank: '5', priority: 5, src: '/images/club-5.webp' },
+                { id: 6, suit: 'club', rank: '6', priority: 6, src: '/images/club-6.webp' },
+                { id: 7, suit: 'club', rank: '7', priority: 7, src: '/images/club-7.webp' },
+                { id: 8, suit: 'club', rank: '8', priority: 8, src: '/images/club-8.webp' },
+                { id: 9, suit: 'club', rank: '9', priority: 9, src: '/images/club-9.webp' },
+                { id: 10, suit: 'club', rank: '10', priority: 10, src: '/images/club-10.webp' },
+                { id: 11, suit: 'club', rank: 'J', priority: 11, src: '/images/club-J.webp' },
+                { id: 12, suit: 'club', rank: 'Q', priority: 12, src: '/images/club-Q.webp' },
+            ],
+        },
+        {
+            id: 2,
+            stackGap: 40,
+            stackIndex: 1,
+            cards: [
+                { id: 13, suit: 'club', rank: 'K', priority: 13, src: '/images/club-K.webp' },
+            ],
+        },
+        {
+            id: 3,
+            stackGap: 40,
+            stackIndex: 2,
+            cards: [
+                { id: 22, suit: 'club', rank: 'A', priority: 1, src: '/images/club-as.webp'},
+                { id: 23, suit: 'club', rank: '2', priority: 2, src: '/images/club-2.webp' },
+                { id: 24, suit: 'club', rank: '3', priority: 3, src: '/images/club-3.webp' },
+                { id: 25, suit: 'club', rank: '4', priority: 4, src: '/images/club-4.webp' },
+                { id: 26, suit: 'club', rank: '5', priority: 5, src: '/images/club-5.webp' },
+                { id: 27, suit: 'club', rank: '6', priority: 6, src: '/images/club-6.webp' },
+                { id: 28, suit: 'club', rank: '7', priority: 7, src: '/images/club-7.webp' },
+                { id: 29, suit: 'club', rank: '8', priority: 8, src: '/images/club-8.webp' },
+                { id: 30, suit: 'club', rank: '9', priority: 9, src: '/images/club-9.webp' },
+                { id: 31, suit: 'club', rank: '10', priority: 10, src: '/images/club-10.webp' },
+                { id: 32, suit: 'club', rank: 'J', priority: 11, src: '/images/club-J.webp' },
+                { id: 33, suit: 'club', rank: 'Q', priority: 12, src: '/images/club-Q.webp' },
+            ],
+        },
+        {
+            id: 4,
+            stackGap: 40,
+            stackIndex: 3,
+            cards: [
+                { id: 17, suit: 'club', rank: 'K', priority: 13, src: '/images/club-K.webp' },
+            ],
+        },
+        {
+            id: 5,
+            stackGap: 40,
+            stackIndex: 4,
+            cards: [],
+        },
+        {
+            id: 6,
+            stackGap: 40,
+            stackIndex: 5,
+            cards: [],
+        },
+        {
+            id: 7,
+            stackGap: 40,
+            stackIndex: 6,
+            cards: [],
+        },
+        {
+            id: 8,
+            stackGap: 40,
+            stackIndex: 7,
+            cards: [],
+        },
+        {
+            id: 9,
+            stackGap: 40,
+            stackIndex: 8,
+            cards: [],
+        },
+        {
+            id: 10,
+            stackGap: 40,
+            stackIndex: 9,
+            cards: [],
+        },
+    ],
     spareStack: []
 }
 
@@ -18,15 +131,45 @@ const gameSlice = createSlice({
     name: 'game',
     initialState,
     reducers: {
+        changeNickname(state, action) {
+            state.nickName = action.payload;
+        },
         determineScore(state, action) {
             state.currentScore += 25 * action.payload.cardRow;
             return state;
         },
+        calculateVictoryState(state) {
+            // For every stack in the deck (10), check if the cards ranks are reverse-sequential.
+            state.currentDeck.forEach(d => {
+                const sequentialCards = [];
+                d.cards.forEach((c, index, array) => {
+                    if((array[index + 1] && array[index + 1].priority - c.priority === 1) || index === array.length - 1) {
+                        sequentialCards.push(c);
+                    }
+                });
+                
+                // If sequential card count is equal to every card in the game, dispose of them and add to player score.
+                if(sequentialCards.length === 13) {
+                    d.cards.splice(d.cards.findIndex(c => c.id === sequentialCards[0].id), d.cards.length);
+                    state.currentScore += 500;
+                }
+            });
+            // If no cards are left, YOU HAVE WON THE GAME!
+            state.hasWon = state.currentDeck.every(s => s.cards.length === 0);
+            return state;
+        },
         // Shuffle the entire deck of cards.
         shuffleDeck(state) {
-            state = {...initialState};
+            state.currentDeck = initialState.currentDeck;
+            state.currentScore = initialState.currentScore;
+            state.spareStack.splice(0, state.spareStack.length);
             [state.currentDeck, state.spareStack] = cardService.shuffleCards();
             return state;
+        },
+        shuffleTestDeck(state) {
+            state.currentDeck = aboutToWinState.currentDeck;
+            state.currentScore = aboutToWinState.currentScore;
+            state.spareStack.splice(0, state.spareStack.length);
         },
         addFromSpareStack(state) {
             [...Array(10)].forEach((_, i) => {
@@ -92,8 +235,27 @@ const gameSlice = createSlice({
                 return state;
             }
         },
+        findCardsToHint(state) {
+            // Find two cards with sequential priorities
+            // from the last cards of each stack
+            const foundLastCards = [];
+            state.currentDeck.forEach(s => {
+                foundLastCards.push(s.cards[s.cards.length]);
+            });
+
+            // If there are any sequential cards, hint them!
+            foundLastCards.forEach((c, index, array) => {
+                if(array[index + 1] && Math.abs(c.priority - array[index + 1].priority) === 1) {
+                    state.hint.cards.push(c);
+                    state.hint.cards.push(array[index + 1]);
+                    state.hint.left--;
+                }
+            });
+
+            return state;
+        }
     }
 });
 
-export const {determineScore, shuffleDeck, selectCard, addFromSpareStack} = gameSlice.actions;
+export const { changeNickname, determineScore, calculateVictoryState, shuffleDeck, shuffleTestDeck, selectCard, addFromSpareStack } = gameSlice.actions;
 export default gameSlice.reducer;

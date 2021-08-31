@@ -1,0 +1,11 @@
+.nickname-indicator {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.nickname-value {
+    color: var(--secondary-color);
+    font-weight: 100;
+    font-style: italic;
+}

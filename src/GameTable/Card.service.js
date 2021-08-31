@@ -26,6 +26,7 @@ export default class CardService {
 
     // Set the entire one suit deck.
     setAllOneSuitCards() {
+        this.oneSuitCardPile = [];
         for(let i = 0; i < 8; i++) {
             this.clubCards.forEach((card) => this.oneSuitCardPile.push(card));
         }

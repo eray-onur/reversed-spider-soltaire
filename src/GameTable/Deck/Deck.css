@@ -1,10 +1,11 @@
 .deck {
     display: grid;
     grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
-    width: 100%;
     min-height: 60rem;
-    height: fit-content;
     margin: 0 auto;
+    align-content: stretch;
+    align-items: stretch;
+    flex: 0 auto;
 }
 
 @media (min-width: 1025px) {

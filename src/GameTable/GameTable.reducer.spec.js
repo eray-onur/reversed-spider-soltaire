@@ -8,7 +8,7 @@ const initialState = {
         cards: []
     },
     currentDeck: [],
-    spareStack: []
+    spareStack: [],
 };
 
 test('should return the initial state', () => {

@@ -1,19 +1,34 @@
 .btn {
     cursor: pointer;
+    border-width: 1px;
     background-color: #222;
     outline: none !important;
     color: var(--text-1-color);
     border-color: var(--secondary-color);
-    border-radius: .25rem;
+    border-radius: .2rem;
     padding: 1rem;
     transition: .2s all;
 }
+
 .btn:hover {
     background-color: var(--secondary-color);
+    border-color: transparent;
     color: #222;
-    border-color: #222;
+}
+
+.btn-flat {
+    border-radius: 0;
+}
+
+.btn-rounded {
+    border-radius: 3rem;
 }
 
 .btn-danger {
     background-color: var(--danger-color);
+    border-color: black;
+}
+
+.btn-borderless {
+    border: none;
 }

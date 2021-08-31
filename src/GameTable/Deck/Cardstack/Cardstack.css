@@ -1,4 +1,5 @@
 .card-stack {
     list-style-type: none;
     position: relative;
+    min-height: 100%;
 }
