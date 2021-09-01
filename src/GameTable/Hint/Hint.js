@@ -14,7 +14,7 @@ const Hint = () => {
     const dispatch = useDispatch();
 
     return (
-        <div className="hint" style={{opacity: hasWon ? '0.5' : '1.0'}} onClick={() => {
+        <div className="hint" style={hasWon ? {pointerEvents: "none", opacity: "0.4"} : {}} onClick={() => {
             if(hasWon)
                 return;
             if(hint.left > 0)

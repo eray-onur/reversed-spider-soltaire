@@ -36,10 +36,6 @@ const Card = ({model, style, onSelect}) => {
         else setIsHintedAt(false);
     }, [hint.cards.length]);
 
-    useEffect(() => {
-        
-    }, [isHintedAt])
-
     return (
         <li className={`game-card`}
             onClick={() => onSelect()}

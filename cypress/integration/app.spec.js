@@ -1,12 +1,29 @@
 export {}; // Dummy export to convert this script into an object.
 
+const nicknameToEnter = 'erayonur45';
+
 it('should visit the homepage', () => {
     cy.visit('http://localhost:3000');
     cy.get('h1').should('have.text', 'Spider Solitaire');
 });
 
+it('should redirect back to homepage if user typed game route in browser', () => {
+    cy.visit('http://localhost:3000/game');
+
+    cy.get('h1').should('have.text', 'Spider Solitaire');
+});
+
+it('should redirect to homepage if user reloaded the page', () => {
+    cy.visit('http://localhost:3000');
+
+    cy.get('input[type=text]').type(nicknameToEnter);
+    cy.contains('Start').trigger('click');
+
+    cy.reload();
+    cy.get('h1').should('have.text', 'Spider Solitaire');
+})
+
 it('should be able to enter valid nickname', () => {
-    const nicknameToEnter = 'erayonur45';
     cy.visit('http://localhost:3000');
 
     cy.get('input[type=text]').type(nicknameToEnter);
@@ -17,10 +34,10 @@ it('should be able to enter valid nickname', () => {
 });
 
 it('should show alert if entered nickname is invalid', () => {
-    const nicknameToEnter = 'er';
+    const invalidNickname = 'er';
     cy.visit('http://localhost:3000');
 
-    cy.get('input[type=text]').type(nicknameToEnter);
+    cy.get('input[type=text]').type(invalidNickname);
     cy.contains('Start').trigger('click');
 
     cy.on('window:alert', (text) => {
@@ -39,7 +56,6 @@ it('should show up tutorial section when clicked "How to Play"', () => {
 
 it('should show nickname in game session', () => {
 
-    const nicknameToEnter = 'erayonur45';
     cy.visit('http://localhost:3000');
 
     cy.get('input[type=text]').type(nicknameToEnter);
@@ -50,7 +66,6 @@ it('should show nickname in game session', () => {
 });
 
 it('time counter works properly', () => {
-    const nicknameToEnter = 'erayonur45';
     cy.visit('http://localhost:3000');
 
     cy.get('input[type=text]').type(nicknameToEnter);
@@ -61,7 +76,7 @@ it('time counter works properly', () => {
 
 it('should go back to main menu when clicked "Forfeit Game"', () => {
     
-    const nicknameToEnter = 'erayonur45';
+    
     cy.visit('http://localhost:3000');
 
     cy.get('input[type=text]').type(nicknameToEnter);
@@ -74,10 +89,18 @@ it('should go back to main menu when clicked "Forfeit Game"', () => {
 });
 
 it('should increase stack sizes when spare stack is clicked', () => {
-    
+    cy.visit('http://localhost:3000');
+
+    cy.get('input[type=text]').type(nicknameToEnter);
+    cy.contains('Start').trigger('click');
+
+    cy.get('.spare-stack').trigger('click');
+
+    cy.get('.card-stack').children().should('have.length.above', 6);
+
 });
 
-// it('should show a valid hint when clicked "Show Hint"', () => {
+// it('"Hint" button is clickable', () => {
 //     cy.visit('http://localhost:3000');
 //     cy.get('h1').should('have.text', 'Spider Soltaire');
 // });

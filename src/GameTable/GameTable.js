@@ -26,10 +26,10 @@ const victoryModalStyle = {
     },
 };
 
-const GameTable = () => {
+const GameTable = ({history}) => {
     const dispatch = useDispatch();
     
-    const {currentDeck, hasWon} = useSelector(state => state.game);
+    const {nickName, currentDeck, hasWon} = useSelector(state => state.game);
     const [victoryModalIsOpen, setIsOpen] = useState(false);
 
     function openModal() {
@@ -41,7 +41,9 @@ const GameTable = () => {
     }
 
     useEffect(() => {
-        dispatch(shuffleDeck());
+        if(nickName !== 'Default Player')
+            dispatch(shuffleDeck());
+        else history.goBack();
     }, []);
 
     useEffect(() => {

@@ -15,11 +15,10 @@ const Tutorial = () => {
                 <p>Select any card in the deck.</p>
                 <img src='#' alt="Example step 1"/>
                 <p>Select another card which is one tier lower than previously selected card (ie. Selecting 9 after 10).</p>
-                <img src='#' alt="Example step 2"/>
                 <p>If the newly arranged stack of cards are a reversed suit sequence of all cards, they are removed from the deck and player earns extra points.</p>
-                <img src='#' alt="Example step 3"/>
+                <img src='#' alt="Example step 2"/>
                 <p>Game ends when there is no other card available on any stack.</p>
-                <img src='#' alt="Example step 4"/>
+                <img src='#' alt="Example end"/>
                 <p>Player can choose to have hint on which cards are viable for selection, but only 3 times.</p>
                 <img src='#' alt="Example hint usage"/>
             </div>

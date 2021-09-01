@@ -160,6 +160,7 @@ const gameSlice = createSlice({
         },
         // Shuffle the entire deck of cards.
         shuffleDeck(state) {
+            state.hint = initialState.hint;
             state.hasWon = initialState.hasWon;
             state.currentDeck = initialState.currentDeck;
             state.currentScore = initialState.currentScore;
@@ -168,6 +169,7 @@ const gameSlice = createSlice({
             return state;
         },
         shuffleTestDeck(state) {
+            state.hint = initialState.hint;
             state.hasWon = initialState.hasWon;
             state.currentDeck = aboutToWinState.currentDeck;
             state.currentScore = aboutToWinState.currentScore;
