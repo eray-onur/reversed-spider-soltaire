@@ -14,14 +14,19 @@ const initialState = {
 test('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual(
       {
-        userName: '',
+        nickName: 'Default Player',
+        hasWon: null,
         currentScore: 0,
         currentlySelected: {
             stackIndex: null,
             cards: []
         },
         currentDeck: [],
-        spareStack: []
+        spareStack: [],
+        hint: {
+            left: 3,
+            cards: []
+        },
       }
     )
 });

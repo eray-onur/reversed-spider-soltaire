@@ -1,8 +1,8 @@
 import { screen, render, fireEvent } from "@testing-library/react";
-import { Provider } from "react-redux";
 import { Router } from "react-router-dom";
-import GameFooter from "./GameFooter";
+import GameHeader from "./GameHeader";
 import { createMemoryHistory } from 'history';
+import { Provider } from "react-redux";
 import store from '../../store/index';
 import {act} from 'react-dom/test-utils';
 
@@ -13,7 +13,7 @@ test('Forfeit game button should work correctly', () => {
     render(
         <Provider store={store}>
             <Router history={history}>
-                <GameFooter/>
+                <GameHeader/>
             </Router>
         </Provider>
     );

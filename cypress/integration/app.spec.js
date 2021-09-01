@@ -73,17 +73,16 @@ it('should go back to main menu when clicked "Forfeit Game"', () => {
     cy.contains('Spider Solitaire').should('exist');
 });
 
+it('should increase stack sizes when spare stack is clicked', () => {
+    
+});
+
 // it('should show a valid hint when clicked "Show Hint"', () => {
 //     cy.visit('http://localhost:3000');
 //     cy.get('h1').should('have.text', 'Spider Soltaire');
 // });
 
 // it('should make player score decrease when a hint is spent', () => {
-//     cy.visit('http://localhost:3000');
-//     cy.get('h1').should('have.text', 'Spider Soltaire');
-// });
-
-// it('should show "Victory" modal when won the game', () => {
 //     cy.visit('http://localhost:3000');
 //     cy.get('h1').should('have.text', 'Spider Soltaire');
 // });
