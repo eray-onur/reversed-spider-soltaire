@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import Button from "../../Common/Components/Button/Button";
 import { ALERT_INVALID_NICKNAME } from "../../Common/Constants";
 import { changeNickname } from './../../GameTable/GameTable.reducer';
@@ -10,6 +11,8 @@ const EntryForm = (props) => {
     
     
     const [nickname, setNickname] = useState({value: ''});
+
+    const notify = () => toast.warn(ALERT_INVALID_NICKNAME);
 
     useEffect(() => {
         const previousNickname = localStorage.getItem("nickname");
@@ -24,7 +27,7 @@ const EntryForm = (props) => {
             dispatch(changeNickname(nickname.value));
             props.history.push(`/game`);
         } else {
-            alert(ALERT_INVALID_NICKNAME);
+            notify();
         }
     }
 

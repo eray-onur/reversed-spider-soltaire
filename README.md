@@ -4,7 +4,7 @@
 
 ## Objective
 
-The object of the game is to build cards of descending suit sequence from King to Ace. e.g. K, Q, J, 10, 9, 8, 7, 6, 5, 4, 3, 2, A within the tableau columns. When such a sequence has been formed, it is automatically removed to one of the 8 foundations. When all 104 cards have been played to the foundations as eight separate King to Ace sequences then the game is won.
+Main objective of the game is to build cards of descending suit sequence from Ace to King. e.g. A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K within the tableau columns. When such a sequence has been formed, it is automatically removed to one of the 8 foundations. When all 104 cards have been played to the foundations as eight separate Ace to King sequences then the game is won.
 However, in this game, the ranks are reversed in value and the player must sequence the cards the other way to win the game!
 
 ## Valuable Info

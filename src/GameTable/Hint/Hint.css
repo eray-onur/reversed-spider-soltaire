@@ -1,14 +1,14 @@
 .hint {
-    cursor: pointer;
-    width: 10rem;
-    height: 10rem;
-    border-radius: 100%;
     position: fixed;
+    cursor: pointer;
+    width: 7rem;
+    height: 7rem;
+    border-radius: 100%;
     bottom: 1rem;
     right: 1rem;
     border-width: 4px;
     border-color: transparent;
-    background-color: var(--primary-color);
+    background-color: var(--secondary-color);
     color: var(--light-color);
     display: flex;
     justify-content: center;
@@ -17,7 +17,7 @@
 }
 
 .hint:hover {
-    border-color: var(--secondary-color);
+    background-color: var(--highlight-color);
 }
 
 .hint > p {

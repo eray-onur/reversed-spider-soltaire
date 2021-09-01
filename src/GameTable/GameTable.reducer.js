@@ -154,12 +154,13 @@ const gameSlice = createSlice({
                     state.currentScore += 500;
                 }
             });
-            // If no cards are left, YOU HAVE WON THE GAME!
+            // If no cards are left in any cardstack, YOU HAVE WON THE GAME!
             state.hasWon = state.currentDeck.every(s => s.cards.length === 0);
             return state;
         },
         // Shuffle the entire deck of cards.
         shuffleDeck(state) {
+            state.hasWon = initialState.hasWon;
             state.currentDeck = initialState.currentDeck;
             state.currentScore = initialState.currentScore;
             state.spareStack.splice(0, state.spareStack.length);
@@ -167,6 +168,7 @@ const gameSlice = createSlice({
             return state;
         },
         shuffleTestDeck(state) {
+            state.hasWon = initialState.hasWon;
             state.currentDeck = aboutToWinState.currentDeck;
             state.currentScore = aboutToWinState.currentScore;
             state.spareStack.splice(0, state.spareStack.length);
@@ -188,6 +190,8 @@ const gameSlice = createSlice({
             const currentlySelected = state.currentlySelected; // Latest selection
             const newCard = action.payload.model; // Current selection
             const stackIndex = action.payload.stackIndex; // Current selection's belonging stack.
+
+            state.hint.cards = initialState.hint.cards; // Reset hint info.
 
             // If selected card is unavailable, current selection will be tracked.
             if(currentlySelected.cards.length === 0) {
@@ -236,26 +240,45 @@ const gameSlice = createSlice({
             }
         },
         findCardsToHint(state) {
+            // If no hints left, immediately cancel the action.
+            if(state.hint.left <= 0)
+                return;
+            state.hint.cards = [...initialState.hint.cards];
             // Find two cards with sequential priorities
             // from the last cards of each stack
             const foundLastCards = [];
+
             state.currentDeck.forEach(s => {
-                foundLastCards.push(s.cards[s.cards.length]);
+                if(s.cards.length > 0)
+                    foundLastCards.push(s.cards[s.cards.length - 1]);
             });
+            foundLastCards.filter(c => c);
 
             // If there are any sequential cards, hint them!
-            foundLastCards.forEach((c, index, array) => {
-                if(array[index + 1] && Math.abs(c.priority - array[index + 1].priority) === 1) {
-                    state.hint.cards.push(c);
-                    state.hint.cards.push(array[index + 1]);
-                    state.hint.left--;
+            for(let index = 0; index < foundLastCards.length; index++) {
+                
+                if(foundLastCards[index + 1] && 
+                    Math.abs(foundLastCards[index].priority - foundLastCards[index + 1].priority) === 1) {
+                        state.hint.cards.push(foundLastCards[index]);
+                        state.hint.cards.push(foundLastCards[index + 1]);
+                        break;
                 }
-            });
+            }
+
+            if(state.hint.cards.length > 0)
+                state.hint.left--;
 
             return state;
         }
     }
 });
 
-export const { changeNickname, determineScore, calculateVictoryState, shuffleDeck, shuffleTestDeck, selectCard, addFromSpareStack } = gameSlice.actions;
+export const { 
+    changeNickname, 
+    determineScore, 
+    calculateVictoryState, 
+    shuffleDeck, shuffleTestDeck, 
+    selectCard, 
+    addFromSpareStack, 
+    findCardsToHint } = gameSlice.actions;
 export default gameSlice.reducer;

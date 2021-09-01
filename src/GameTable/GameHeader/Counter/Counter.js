@@ -1,12 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import './Counter.css';
 
 const formatSeconds = (seconds) => {
-    return seconds;
+    if(seconds > 59) {
+        let minutes = (seconds / 60).toFixed(0);
+        let remainingSeconds = (seconds - (minutes * 60)).toFixed(0);
+
+        if(minutes.length <= 1)
+            minutes = `0${minutes}`;
+        if(remainingSeconds.length <= 1)
+            remainingSeconds = `0${remainingSeconds}`;
+
+        return `${minutes}:${remainingSeconds}`;
+    }
+    return seconds.toString();
 };
-formatSeconds(); // Dummy until added to component properly.
 
 const Counter = () => {
+    const {hasWon} = useSelector(state => state.game);
 
     let [passedSeconds, setPassedSeconds] = useState(0);
     let [timerId, setTimerId] = useState(null);
@@ -25,10 +37,17 @@ const Counter = () => {
         }
     }, []);
 
+    useEffect(() => {
+        if(hasWon) {
+            clearInterval(timerId);
+            setTimerId(null);
+        }
+    }, [hasWon])
+
 
     return (
         <div className="counter">
-            {passedSeconds}
+            {formatSeconds(passedSeconds)}
         </div>
     );
 

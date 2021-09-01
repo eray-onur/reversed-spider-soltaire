@@ -2,7 +2,7 @@ export {}; // Dummy export to convert this script into an object.
 
 it('should visit the homepage', () => {
     cy.visit('http://localhost:3000');
-    cy.get('h1').should('have.text', 'Spider Soltaire');
+    cy.get('h1').should('have.text', 'Spider Solitaire');
 });
 
 it('should be able to enter valid nickname', () => {
@@ -49,10 +49,15 @@ it('should show nickname in game session', () => {
     
 });
 
-// it('time counter works properly', () => {
-//     cy.visit('http://localhost:3000');
-//     cy.get('h1').should('have.text', 'Spider Soltaire');
-// });
+it('time counter works properly', () => {
+    const nicknameToEnter = 'erayonur45';
+    cy.visit('http://localhost:3000');
+
+    cy.get('input[type=text]').type(nicknameToEnter);
+    cy.contains('Start').trigger('click');
+
+    cy.get('.counter').should('exist');
+});
 
 it('should go back to main menu when clicked "Forfeit Game"', () => {
     
@@ -62,11 +67,10 @@ it('should go back to main menu when clicked "Forfeit Game"', () => {
     cy.get('input[type=text]').type(nicknameToEnter);
     cy.contains('Start').trigger('click');
 
-    cy.wait(150);
     cy.contains('Forfeit').trigger('click');
-    cy.get('h1').should('have.text', 'Spider Soltaire');
 
-
+    cy.wait(150);
+    cy.contains('Spider Solitaire').should('exist');
 });
 
 // it('should show a valid hint when clicked "Show Hint"', () => {
@@ -75,11 +79,6 @@ it('should go back to main menu when clicked "Forfeit Game"', () => {
 // });
 
 // it('should make player score decrease when a hint is spent', () => {
-//     cy.visit('http://localhost:3000');
-//     cy.get('h1').should('have.text', 'Spider Soltaire');
-// });
-
-// it('should not give any more hints if all hints are spent', () => {
 //     cy.visit('http://localhost:3000');
 //     cy.get('h1').should('have.text', 'Spider Soltaire');
 // });

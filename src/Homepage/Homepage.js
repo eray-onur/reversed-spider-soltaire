@@ -5,11 +5,12 @@ import Button from './../Common/Components/Button/Button';
 import Modal from 'react-modal';
 import Tutorial from './Tutorial/Tutorial';
 import './Homepage.css';
+import { APP_TITLE } from '../Common/Constants';
 
 if (process.env.NODE_ENV !== 'test')
     Modal.setAppElement('#root');
 
-const customModalStyle = {
+const tutorialModalStyle = {
     content: {
       top: '50%',
       left: '50%',
@@ -50,13 +51,13 @@ const Homepage = (props) => {
         }}
         classes={'home-page'}
     >
-        <h1 className="home-heading">Spider Soltaire</h1>
+        <h1 className="home-heading">{APP_TITLE}</h1>
         <EntryForm {...props}/>
         <Button styleClasses={'btn-tutorial'} onClick={openModal}>How to Play?</Button>
         <Modal
             isOpen={tutorialModalIsOpen}
             onRequestClose={closeModal}
-            style={customModalStyle}
+            style={tutorialModalStyle}
             contentLabel="Tutorial"
         >
             <Tutorial/>
