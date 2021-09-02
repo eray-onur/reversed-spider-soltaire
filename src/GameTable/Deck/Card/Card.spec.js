@@ -24,7 +24,7 @@ test('should trigger onSelect function when clicked', () => {
 });
 
 test('should render image source from the model class', () => {
-    const model = new CardModel('club', 10, 10, '/assets/club-10.webp');
+    const model = new CardModel('club', 10, 10, '/images/club-10.webp', true);
 
     const {container} = render(
         <Provider store={store}>
@@ -36,5 +36,21 @@ test('should render image source from the model class', () => {
     
     const image = container.getElementsByTagName('img')[0];
 
-    expect(image.src).toEqual('http://localhost/assets/club-10.webp');
+    expect(image.src).toEqual('http://localhost/images/club-10.webp');
+});
+
+test('should hide card with background image if it isn\'t active', () => {
+    const model = new CardModel('club', 10, 10, '/assets/club-1.webp', false);
+
+    const {container} = render(
+        <Provider store={store}>
+            <DndProvider backend={HTML5Backend}>
+                <Card model={model} style={{}}/>
+            </DndProvider>
+        </Provider>
+    );
+    
+    const image = container.getElementsByTagName('img')[0];
+
+    expect(image.src).toEqual('http://localhost/images/card-bg.webp');
 });

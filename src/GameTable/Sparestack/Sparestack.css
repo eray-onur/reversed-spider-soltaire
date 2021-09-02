@@ -1,16 +1,19 @@
 .spare-stack {
+    cursor: pointer;
     list-style-type: none;
     width:fit-content;
-    display: flex;
-    position: relative;
-    background-color: rgba(0,0,0,0.6);
+    background-color: var(--secondary-color);
+    border-radius: .2rem;
     padding: .1rem;
+    position: sticky;
+    top: 100%;
+    left: 0;
 }
 .spare-stack > img {
     width: 9vw;
 }
 .spare-stack > img:hover {
-    box-shadow: 1px 0 12px var(--secondary-color);
+    box-shadow: 1px 0 18px var(--highlight-color);
     object-fit: contain;
 }
 
@@ -23,4 +26,8 @@
     width: 100%;
     text-align: center;
     color: var(--light-color);
+}
+
+.cards-exhausted {
+    background-color: rgba(0, 0, 0, 0.25);
 }

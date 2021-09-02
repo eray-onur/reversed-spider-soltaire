@@ -27,9 +27,3 @@ test('Forfeit game button should work correctly', () => {
     expect(mockFunction).toHaveBeenCalledTimes(1);
 
 });
-
-// test('Scoreboard should show points correctly', () => {
-//     const mockFunction = jest.fn();
-
-
-// });

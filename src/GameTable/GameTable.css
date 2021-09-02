@@ -2,3 +2,21 @@
     background-image: url('./assets/table.webp');
     background-size: cover;
 }
+
+.victory-heading {
+    color: var(--light-color);
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+}
+
+.victory-text {
+    color: var(--light-color);
+}
+
+.nickname-highlight {
+    color: var(--secondary-color);
+}

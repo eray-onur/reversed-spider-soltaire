@@ -1,0 +1,6 @@
+{
+  "homeUrl": "http://localhost:3000",
+  "gameUrl": "http://localhost:3000/game",
+  "validNickName": "erayonur45",
+  "invalidNickName": "er"
+}

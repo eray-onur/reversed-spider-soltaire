@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import CardService from './Card.service';
+import ShuffleService from './Shuffle.service';
 
 let initialState = {
     nickName: 'Default Player',
@@ -36,18 +36,18 @@ let aboutToWinState = {
             stackGap: 40,
             stackIndex: 0,
             cards: [
-                { id: 1, suit: 'club', rank: 'A', priority: 1, src: '/images/club-as.webp'},
-                { id: 2, suit: 'club', rank: '2', priority: 2, src: '/images/club-2.webp' },
-                { id: 3, suit: 'club', rank: '3', priority: 3, src: '/images/club-3.webp' },
-                { id: 4, suit: 'club', rank: '4', priority: 4, src: '/images/club-4.webp' },
-                { id: 5, suit: 'club', rank: '5', priority: 5, src: '/images/club-5.webp' },
-                { id: 6, suit: 'club', rank: '6', priority: 6, src: '/images/club-6.webp' },
-                { id: 7, suit: 'club', rank: '7', priority: 7, src: '/images/club-7.webp' },
-                { id: 8, suit: 'club', rank: '8', priority: 8, src: '/images/club-8.webp' },
-                { id: 9, suit: 'club', rank: '9', priority: 9, src: '/images/club-9.webp' },
-                { id: 10, suit: 'club', rank: '10', priority: 10, src: '/images/club-10.webp' },
-                { id: 11, suit: 'club', rank: 'J', priority: 11, src: '/images/club-J.webp' },
-                { id: 12, suit: 'club', rank: 'Q', priority: 12, src: '/images/club-Q.webp' },
+                { id: 1, suit: 'club', rank: 'A', priority: 1, src: '/images/club-as.webp', active: true},
+                { id: 2, suit: 'club', rank: '2', priority: 2, src: '/images/club-2.webp', active: true },
+                { id: 3, suit: 'club', rank: '3', priority: 3, src: '/images/club-3.webp', active: true },
+                { id: 4, suit: 'club', rank: '4', priority: 4, src: '/images/club-4.webp', active: true },
+                { id: 5, suit: 'club', rank: '5', priority: 5, src: '/images/club-5.webp', active: true },
+                { id: 6, suit: 'club', rank: '6', priority: 6, src: '/images/club-6.webp', active: true },
+                { id: 7, suit: 'club', rank: '7', priority: 7, src: '/images/club-7.webp', active: true },
+                { id: 8, suit: 'club', rank: '8', priority: 8, src: '/images/club-8.webp', active: true },
+                { id: 9, suit: 'club', rank: '9', priority: 9, src: '/images/club-9.webp', active: true },
+                { id: 10, suit: 'club', rank: '10', priority: 10, src: '/images/club-10.webp', active: true },
+                { id: 11, suit: 'club', rank: 'J', priority: 11, src: '/images/club-J.webp', active: true },
+                { id: 12, suit: 'club', rank: 'Q', priority: 12, src: '/images/club-Q.webp', active: true },
             ],
         },
         {
@@ -55,7 +55,7 @@ let aboutToWinState = {
             stackGap: 40,
             stackIndex: 1,
             cards: [
-                { id: 13, suit: 'club', rank: 'K', priority: 13, src: '/images/club-K.webp' },
+                { id: 13, suit: 'club', rank: 'K', priority: 13, src: '/images/club-K.webp', active: true },
             ],
         },
         {
@@ -63,18 +63,18 @@ let aboutToWinState = {
             stackGap: 40,
             stackIndex: 2,
             cards: [
-                { id: 22, suit: 'club', rank: 'A', priority: 1, src: '/images/club-as.webp'},
-                { id: 23, suit: 'club', rank: '2', priority: 2, src: '/images/club-2.webp' },
-                { id: 24, suit: 'club', rank: '3', priority: 3, src: '/images/club-3.webp' },
-                { id: 25, suit: 'club', rank: '4', priority: 4, src: '/images/club-4.webp' },
-                { id: 26, suit: 'club', rank: '5', priority: 5, src: '/images/club-5.webp' },
-                { id: 27, suit: 'club', rank: '6', priority: 6, src: '/images/club-6.webp' },
-                { id: 28, suit: 'club', rank: '7', priority: 7, src: '/images/club-7.webp' },
-                { id: 29, suit: 'club', rank: '8', priority: 8, src: '/images/club-8.webp' },
-                { id: 30, suit: 'club', rank: '9', priority: 9, src: '/images/club-9.webp' },
-                { id: 31, suit: 'club', rank: '10', priority: 10, src: '/images/club-10.webp' },
-                { id: 32, suit: 'club', rank: 'J', priority: 11, src: '/images/club-J.webp' },
-                { id: 33, suit: 'club', rank: 'Q', priority: 12, src: '/images/club-Q.webp' },
+                { id: 22, suit: 'club', rank: 'A', priority: 1, src: '/images/club-as.webp', active: true},
+                { id: 23, suit: 'club', rank: '2', priority: 2, src: '/images/club-2.webp', active: true },
+                { id: 24, suit: 'club', rank: '3', priority: 3, src: '/images/club-3.webp', active: true },
+                { id: 25, suit: 'club', rank: '4', priority: 4, src: '/images/club-4.webp', active: true },
+                { id: 26, suit: 'club', rank: '5', priority: 5, src: '/images/club-5.webp', active: true },
+                { id: 27, suit: 'club', rank: '6', priority: 6, src: '/images/club-6.webp', active: true },
+                { id: 28, suit: 'club', rank: '7', priority: 7, src: '/images/club-7.webp', active: true },
+                { id: 29, suit: 'club', rank: '8', priority: 8, src: '/images/club-8.webp', active: true },
+                { id: 30, suit: 'club', rank: '9', priority: 9, src: '/images/club-9.webp', active: true },
+                { id: 31, suit: 'club', rank: '10', priority: 10, src: '/images/club-10.webp', active: true },
+                { id: 32, suit: 'club', rank: 'J', priority: 11, src: '/images/club-J.webp', active: true },
+                { id: 33, suit: 'club', rank: 'Q', priority: 12, src: '/images/club-Q.webp', active: true },
             ],
         },
         {
@@ -82,7 +82,7 @@ let aboutToWinState = {
             stackGap: 40,
             stackIndex: 3,
             cards: [
-                { id: 17, suit: 'club', rank: 'K', priority: 13, src: '/images/club-K.webp' },
+                { id: 17, suit: 'club', rank: 'K', priority: 13, src: '/images/club-K.webp', active: true },
             ],
         },
         {
@@ -125,7 +125,7 @@ let aboutToWinState = {
     spareStack: []
 }
 
-const cardService = new CardService();
+const shuffleService = new ShuffleService();
 
 const gameSlice = createSlice({
     name: 'game',
@@ -165,7 +165,7 @@ const gameSlice = createSlice({
             state.currentDeck = initialState.currentDeck;
             state.currentScore = initialState.currentScore;
             state.spareStack.splice(0, state.spareStack.length);
-            [state.currentDeck, state.spareStack] = cardService.shuffleCards();
+            [state.currentDeck, state.spareStack] = shuffleService.shuffleCards();
             return state;
         },
         shuffleTestDeck(state) {
@@ -238,6 +238,10 @@ const gameSlice = createSlice({
                 // State mutation
                 state.currentDeck = deck;
                 state.currentlySelected = {stackIndex: null, cards: []};
+                state.currentDeck.map(s => {
+                    if(s.cards.length > 0)
+                        s.cards[s.cards.length - 1].active = true
+                });
                 return state;
             }
         },

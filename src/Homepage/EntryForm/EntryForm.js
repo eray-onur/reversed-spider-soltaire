@@ -12,7 +12,7 @@ const EntryForm = (props) => {
     
     const [nickname, setNickname] = useState({value: ''});
 
-    const notify = () => toast.warn(ALERT_INVALID_NICKNAME);
+    const notify = () => toast.warn(<p className="alert-title">{ALERT_INVALID_NICKNAME}</p>);
 
     useEffect(() => {
         const previousNickname = localStorage.getItem("nickname");

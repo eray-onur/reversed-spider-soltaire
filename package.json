@@ -28,8 +28,8 @@
     "test:coverage": "npm test --watchAll --coverage",
     "cypress:start:app": "cross-env BROWSER=none react-scripts -r @cypress/instrument-cra start",
     "cypress:start:wait": "start-server-and-test cypress:start:app http://localhost:3000",
-    "e2e:open": "npm run cypress:start:wait -- \"cypress open\"",
-    "e2e:run": "npm run cypress:start:wait -- \"cypress run\"",
+    "e2e": "npm run cypress:start:wait -- \"cypress open\"",
+    "e2e:headless": "npm run cypress:start:wait -- \"cypress run\"",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

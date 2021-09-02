@@ -22,14 +22,17 @@ const victoryModalStyle = {
       bottom: 'auto',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
-      backgroundColor: '#777'
+      backgroundColor: '#777',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '5rem'
     },
 };
 
 const GameTable = ({history}) => {
     const dispatch = useDispatch();
     
-    const {nickName, currentDeck, hasWon} = useSelector(state => state.game);
+    const {nickName, currentScore, currentDeck, hasWon} = useSelector(state => state.game);
     const [victoryModalIsOpen, setIsOpen] = useState(false);
 
     function openModal() {
@@ -43,7 +46,7 @@ const GameTable = ({history}) => {
     useEffect(() => {
         if(nickName !== 'Default Player')
             dispatch(shuffleDeck());
-        else history.goBack();
+        else history.push('/');
     }, []);
 
     useEffect(() => {
@@ -102,7 +105,8 @@ const GameTable = ({history}) => {
                     style={victoryModalStyle}
                     contentLabel="Tutorial"
                 >
-                    <p>You have won the game!</p>
+                    <h4 className="victory-heading"><span className="material-icons">emoji_events</span><span>Congratulations, <i className='nickname-highlight'>{nickName}</i> !</span></h4>
+                    <p className="victory-text">You have won the game with a score of: <i className='nickname-highlight'>{currentScore}</i></p>
                     <Button onClick={() => closeModal()}>Close</Button>
                 </Modal>
             </Page>

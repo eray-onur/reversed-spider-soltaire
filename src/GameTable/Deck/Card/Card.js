@@ -3,9 +3,10 @@ import {useDrag} from 'react-dnd';
 import { useSelector } from 'react-redux';
 import './Card.css';
 import { 
+    IMG_CARD_HIDDEN,
     STYLE_HINTED_CARD,
     STYLE_IDLE_CARD, 
-    STYLE_SELECTED_CARD 
+    STYLE_SELECTED_CARD
 } from './Constants';
 
 const Card = ({model, style, onSelect}) => {
@@ -46,7 +47,7 @@ const Card = ({model, style, onSelect}) => {
                     : (isHintedAt === true 
                         ? STYLE_HINTED_CARD 
                         : STYLE_IDLE_CARD)}}>
-            <img className="game-card-image" src={model.src} alt="card" />
+            <img className="game-card-image" src={model.active ? model.src : IMG_CARD_HIDDEN} alt="card" />
             <p>{isHintedAt}</p>
         </li>
     );

@@ -4,8 +4,8 @@ import './Counter.css';
 
 const formatSeconds = (seconds) => {
     if(seconds > 59) {
-        let minutes = (seconds / 60).toFixed(0);
-        let remainingSeconds = (seconds - (minutes * 60)).toFixed(0);
+        let minutes = Math.floor(seconds / 60).toFixed(0);
+        let remainingSeconds = Math.abs(seconds - (minutes * 60)).toFixed(0);
 
         if(minutes.length <= 1)
             minutes = `0${minutes}`;

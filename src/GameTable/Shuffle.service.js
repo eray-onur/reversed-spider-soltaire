@@ -38,7 +38,7 @@ export default class CardService {
 
         // If card is found in the pile, return it and remove from original position.
         if(foundCard) {
-            const newInstance = new CardModel(foundCard.suit, foundCard.rank, foundCard.priority, foundCard.src);
+            const newInstance = new CardModel(foundCard.suit, foundCard.rank, foundCard.priority, foundCard.src, false);
             this.oneSuitCardPile.splice(this.oneSuitCardPile.indexOf(foundCard), 1);
 
             return newInstance;
@@ -89,11 +89,12 @@ export default class CardService {
             currentDeck[findAvailableStack.next().value].cards.push(card);
 
         }
-        this.oneSuitCardPile.forEach(c => 
+        this.oneSuitCardPile.forEach(c => {
+            
             spareStack.push(
-                new CardModel(c.suit, c.rank, c.priority, c.src, false)
-            )
-        );
+                new CardModel(c.suit, c.rank, c.priority, c.src, true)
+            );
+        });
         currentDeck.map(s => s.cards[s.cards.length - 1].active = true);
         return [currentDeck, spareStack];
     }

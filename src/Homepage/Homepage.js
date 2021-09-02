@@ -12,13 +12,15 @@ if (process.env.NODE_ENV !== 'test')
 
 const tutorialModalStyle = {
     content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      backgroundColor: '#fff'
+      top: '40%',
+      left: '40%',
+      marginRight: '-40%',
+      transform: 'translate(-40%, -40%)',
+      backgroundColor: 'var(--card-color)',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
     },
 };
 
