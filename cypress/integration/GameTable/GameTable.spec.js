@@ -55,11 +55,6 @@ describe('GameTable domain integration tests', () => {
         cy.get('.card-stack').children().should('have.length.above', 6);
     
     })
-
-    // it('should make player score decrease when a hint is spent', () => {
-    //     cy.visit('http://localhost:3000');
-    //     cy.get('h1').should('have.text', 'Spider Soltaire');
-    // });
 });
 
 
