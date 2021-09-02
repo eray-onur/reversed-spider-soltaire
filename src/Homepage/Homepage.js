@@ -37,20 +37,6 @@ const Homepage = (props) => {
 
     return (
     <Page
-        pageVariants={{
-            in: {
-                opacity: 1,
-                x: 0
-            },
-            out: {
-                opacity: 0,
-                x: '-100vw'
-            }
-        }}
-        pageTransition={{
-            duration: 0.35,
-            transition: 'linear'
-        }}
         classes={'home-page'}
     >
         <h1 className="home-heading">{APP_TITLE}</h1>
