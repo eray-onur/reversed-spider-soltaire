@@ -38,7 +38,7 @@ const EntryForm = (props) => {
                 <div className="entry-form-row">
                     <p className="text-1">Nickname: </p>
                     <form className="entry-form">
-                        <input className="text-input" type="text" placeholder="i.e: Eraybaba97" value={nickname.value}
+                        <input className="text-input" type="text" placeholder="i.e: erayonur45" value={nickname.value}
                             onChange={(e) => setNickname({value: e.target.value})}/>
                     </form>
                 </div>
