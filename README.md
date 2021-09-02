@@ -1,6 +1,6 @@
 # Spider Solitaire
 
-> Live Game: https://reversed-spider-soltaire.herokuapp.com/
+> Live Game: https://reversed-spider-solitaire-eray.herokuapp.com/
 
 ## Objective
 
