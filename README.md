@@ -1,4 +1,4 @@
-# Spider Soltaire
+# Spider Solitaire
 
 > Live Game: https://reversed-spider-soltaire.herokuapp.com/
 
