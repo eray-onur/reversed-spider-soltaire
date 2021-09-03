@@ -15,8 +15,6 @@ However, in this game, the ranks are reversed in value and the player must seque
 
 ## Development Details
 
-* Unfortunately, Lighthouse cannot analyze app's performance due to utilized page animations. Root cause can be explained here: https://github.com/GoogleChrome/lighthouse/issues/10869
-
 ### Unit Testing Coverage
 
 ![Unit Test Coverage](/.readme-assets/unit-tests.PNG)
